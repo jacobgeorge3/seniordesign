@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 
 // Create GET request
 app.get("/", (req, res) => {
-  res.send("Express on Vercel");
+  res.send("Testing vercel autoupdate...");
 });
 
 // Initialize server
