@@ -10,6 +10,10 @@ app.get("/", (req, res) => {
   res.send("Testing vercel autoupdate...");
 });
 
+app.get("/get/friends/:username", (req, res) => {
+  res.send(req.params);
+});
+
 // Initialize server
 app.listen(port, () => {
   console.log(`Running on port ${port}.`);
