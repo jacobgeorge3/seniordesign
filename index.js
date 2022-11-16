@@ -14,3 +14,6 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Running on port ${port}.`);
 });
+
+// Export the Express API for vercel
+module.exports = app;
