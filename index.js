@@ -1,5 +1,6 @@
 // Add Express
 const express = require("express");
+var cors = require("cors");
 const { MongoClient } = require("mongodb");
 const connectionString =
   "mongodb+srv://ut-circles-user:ut-circles-user@cluster0.csb8sik.mongodb.net/?retryWrites=true&w=majority";
@@ -13,6 +14,7 @@ let dbConnection;
 // Initialize Express
 const app = express();
 const port = process.env.PORT || 3000;
+app.use(cors());
 
 // Create GET request
 app.get("/", (req, res) => {
