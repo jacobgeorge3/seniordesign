@@ -22,23 +22,31 @@ app.get("/", (req, res) => {
 });
 
 app.get("/get/friends/:username", async (req, res) => {
-  users = await dbConnection.collection("users");
-  //console.log(users);
-  obj = await users.findOne({ username: req.params.username });
-  //console.log(obj);
-  if (obj) {
-    res.send({ friends: obj.friends });
-  } else {
-    res.send({});
+  try {
+    users = await dbConnection.collection("users");
+    //console.log(users);
+    obj = await users.findOne({ username: req.params.username });
+    //console.log(obj);
+    if (obj) {
+      res.send({ friends: obj.friends });
+    } else {
+      res.send({});
+    }
+  } catch (err) {
+    res.send({ error: err });
   }
 });
 
 async function connect() {
-  await client.connect();
-  await client.db("Database").command({ ping: 1 });
-  dbConnection = await client.db("Database");
-  //console.log(dbConnection);
-  console.log("Connected successfully to server");
+  try {
+    await client.connect();
+    await client.db("Database").command({ ping: 1 });
+    dbConnection = await client.db("Database");
+    //console.log(dbConnection);
+    console.log("Connected successfully to server");
+  } catch (err) {
+    console.log("couldn't connect to db");
+  }
 }
 
 // Initialize server
