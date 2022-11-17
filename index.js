@@ -23,8 +23,10 @@ app.get("/", (req, res) => {
 
 app.get("/get/friends/:username", async (req, res) => {
   try {
+    await client.connect();
+    dbConnection = await client.db("Database");
     users = await dbConnection.collection("users");
-    //console.log(users);
+    console.log(users);
     obj = await users.findOne({ username: req.params.username });
     //console.log(obj);
     if (obj) {
