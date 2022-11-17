@@ -7,11 +7,12 @@ const port = process.env.PORT || 3000;
 
 // Create GET request
 app.get("/", (req, res) => {
-  res.send("Testing vercel autoupdate...");
+  res.send("Testing");
 });
 
 app.get("/get/friends/:username", (req, res) => {
   res.send(req.params);
+  console.log(req.params);
 });
 
 // Initialize server
